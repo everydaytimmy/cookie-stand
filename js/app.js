@@ -3,14 +3,15 @@ let seattle = {
   minCust: 23,
   maxCust: 65,
   avgSale: 6.3,
-  hourlySales: [5,8,6,9,9,4,6,12,10,9,12,7,6,3],
+  hourlySales: [5, 8, 6, 9, 9, 4, 6, 12, 10, 9, 12, 7, 6, 3],
 };
 
 let tokyo = {
   name: "Tokyo",
   minCust: 3,
   maxCust: 24,
-  avgSale: 1.3
+  avgSale: 1.3,
+  hourlySales: [5, 8, 6, 9, 9, 4, 6, 12, 10, 9, 12, 7, 6, 3],
 };
 
 const openTimes = [
@@ -33,27 +34,48 @@ const openTimes = [
 
 const storeContainerElem = document.getElementById('store-container');
 
+
 const sectionElem = document.createElement('section');
 storeContainerElem.appendChild(sectionElem);
 
+createCookieStand(seattle);
 
-//heading item
-const locationElem = document.createElement('h2');
-sectionElem.appendChild(locationElem);
-locationElem.textContent = 'Seattle';
+createCookieStand(tokyo);
 
 
-//list items
-const hourListElem = document.createElement('ul');
-sectionElem.appendChild(hourListElem);
+function createCookieStand(cookieStand) {
+  
+  const locationElem = document.createElement('h2');
+  sectionElem.appendChild(locationElem);
+  locationElem.textContent = cookieStand.name
 
-const hourItemElem = document.createElement('li');
-hourListElem.appendChild(hourItemElem);
-hourItemElem.textContent = '6am: 16';
+  //list items
 
-const totalItemElem = document.createElement('li');
-hourListElem.appendChild(totalItemElem);
-totalItemElem.textContent = 'Total = 69';
+  const hourListElem = document.createElement('ul');
+  sectionElem.appendChild(hourListElem);
+
+  for(let i = 0; i < openTimes.length; i += 1) {
+
+    const hourItemElem = document.createElement('li');
+    hourListElem.appendChild(hourItemElem);
+    let timeSales = cookieStand.hourlySales[i];
+    hourItemElem.textContent = `${openTimes[i]}: ${timeSales} cookies`;
+  };
+
+  let total = 0;
+
+  for(let i =0; i < cookieStand.hourlySales.length; i +=1 ){
+    const currentSales = cookieStand.hourlySales[i];
+    total += currentSales;
+  };
+
+  const totalItemElem = document.createElement('li');
+  hourListElem.appendChild(totalItemElem);
+  totalItemElem.textContent = `Total: ${total} cookies.`;
+};
+
+
+
 
 
 
