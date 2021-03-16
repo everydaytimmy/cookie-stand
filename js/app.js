@@ -18,12 +18,13 @@ const openTimes = [
 ];
 
 //define a city
-function CityProfile(city, hours) {
+function CityProfile(city, hours, avgSale, minCust, maxCust) {
   this.city = city;
-  // this.minCust = minCust;
-  // this.avgSale = avgSale;
-  // this.hourlySales = hourlySales;
   this.hours = hours;
+  this.avgSale = avgSale;
+  this.minCust = minCust;
+  this.maxCust = maxCust;
+  // this.hourlySales = hourlySales;
 }
 
 
@@ -47,22 +48,18 @@ CityProfile.prototype.render = function () {
   }
   createChild('th', headerRow, 'Daily Location Total');
 
-  //table data
+  let total = 0;
+
+  //table data sales
   createChild('td', dataRow, this.city);
   for (let i = 0; i < this.hours.length; i += 1) {
-    createChild('td', dataRow, this.hours[i]);
+    createChild('td', dataRow, parseInt(getRandomInt(this.maxCust, this.minCust) * this.avgSale));
+    total += parseInt(getRandomInt(this.maxCust, this.minCust) * this.avgSale);
   }
-  createChild('td', dataRow, 'Daily Location Total');
-
-  // const dataRow = document.createElement('tr');
-  // table.appendChild(dataRow);
-
-  // createChild('td', dataRow, this.goodWithKids);
-  // createChild('td', dataRow, this.goodWithDogs);
-  // createChild('td', dataRow, this.goodWithOtherCats);
-
+  createChild('td', dataRow, total);
 };
-//create input function
+
+//create createChild function
 function createChild(tag, parent, text) {
 
   const child = document.createElement(tag);
@@ -73,74 +70,15 @@ function createChild(tag, parent, text) {
   }
 
   return child;
-
 }
 
-let seattle = new CityProfile('Seattle', openTimes);
+//create random int
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min) + min);
+}
+
+let seattle = new CityProfile('Seattle', openTimes, 6.3, 23, 65);
 
 seattle.render();
-
-
-
-
-// const storeContainerElem = document.getElementById('store-container');
-
-
-// const sectionElem = document.createElement('section');
-// storeContainerElem.appendChild(sectionElem);
-
-// createCookieStand(seattle);
-
-// createCookieStand(tokyo);
-
-
-// function createCookieStand(cookieStand) {
-
-//   const locationElem = document.createElement('h2');
-//   sectionElem.appendChild(locationElem);
-//   locationElem.textContent = cookieStand.name
-
-//   //list items
-
-//   const hourListElem = document.createElement('ul');
-//   sectionElem.appendChild(hourListElem);
-
-//   for(let i = 0; i < openTimes.length; i += 1) {
-
-//     const hourItemElem = document.createElement('li');
-//     hourListElem.appendChild(hourItemElem);
-//     let timeSales = cookieStand.hourlySales[i];
-//     hourItemElem.textContent = `${openTimes[i]}: ${timeSales} cookies`;
-//   };
-
-//   let total = 0;
-
-//   for(let i =0; i < cookieStand.hourlySales.length; i +=1 ){
-//     const currentSales = cookieStand.hourlySales[i];
-//     total += currentSales;
-//   };
-
-//   const totalItemElem = document.createElement('li');
-//   hourListElem.appendChild(totalItemElem);
-//   totalItemElem.textContent = `Total: ${total} cookies.`;
-// };
-
-
-
-
-
-
-
-
-
-
-
-
-// <section>
-// <h2>Seattle</h2>
-// <ul>
-//   <li>6am: 16 cookies</li>
-//   <li>7am: 18 cookies</li>
-//   <li>8am: 26 cookies</li>
-// </ul>
-// </section>
