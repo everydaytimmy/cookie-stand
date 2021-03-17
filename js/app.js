@@ -17,42 +17,43 @@ const openTimes = [
   '7pm',
 ];
 
-//define a city
-function CityProfile(city, hours, avgSale, minCust, maxCust) {
+//define a city with a Constructor Function
+function CityProfile(city, avgSale, minCust, maxCust) {
   this.city = city;
-  this.hours = hours;
   this.avgSale = avgSale;
   this.minCust = minCust;
   this.maxCust = maxCust;
+  this.sales = [];
+}
+
+function rowHeader() {
+  const profileContainer = document.getElementById('store-container');
+  const headerRow = createChild('tr', profileContainer);
+  createChild('th', headerRow, '');
+  for (let i = 0; i < openTimes.length; i += 1) {
+    createChild('th', headerRow, openTimes[i]);
+  }
+  createChild('th', headerRow, 'Daily Location Total');
 }
 
 CityProfile.prototype.render = function () {
 
   const profileContainer = document.getElementById('store-container');
-  const article = createChild('article', profileContainer);
-
-  // createChild('h2', article, this.city);
-
-  const table = createChild('table', article);
-  const headerRow = createChild('tr', table);
-  const dataRow = createChild('td', table);
-
-  // table headers
-  createChild('th', headerRow, '');
-  for (let i = 0; i < this.hours.length; i += 1) {
-    createChild('th', headerRow, this.hours[i]);
-  }
-  createChild('th', headerRow, 'Daily Location Total');
 
   let total = 0;
 
-  //table data sales
-  createChild('td', dataRow, this.city);
-  for (let i = 0; i < this.hours.length; i += 1) {
-    createChild('td', dataRow, parseInt(getRandomInt(this.maxCust, this.minCust) * this.avgSale));
-    total += parseInt(getRandomInt(this.maxCust, this.minCust) * this.avgSale);
+  const cityRow = createChild('tr', profileContainer);
+
+  createChild('td', cityRow, this.city);
+
+  for (let i = 0; i < openTimes.length; i += 1) {
+    let randomInt = parseInt(getRandomInt(this.maxCust, this.minCust) * this.avgSale);
+    this.sales.push(randomInt);
+    createChild('td', cityRow, randomInt);
+
+    total += randomInt;
   }
-  createChild('td', dataRow, total);
+  createChild('td', cityRow, total);
 };
 
 //   //table footer
@@ -63,7 +64,7 @@ CityProfile.prototype.render = function () {
 //   createChild('td', totalRow, total);
 // };
 
-//create createChild function
+
 function createChild(tag, parent, text) {
 
   const child = document.createElement(tag);
@@ -83,8 +84,15 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
 }
 
-let seattle = new CityProfile('Seattle', openTimes, 6.3, 23, 65);
-let tokyo = new CityProfile('Tokyo', openTimes, 1.2, 3, 24);
+let seattle = new CityProfile('Seattle', 6.3, 23, 65);
+let tokyo = new CityProfile('Tokyo', 1.2, 3, 24);
+let dubai = new CityProfile('Dubai', 3.7, 11, 38);
+let paris = new CityProfile('Paris', 2.3, 20,30);
+let lima = new CityProfile('Lima', 4.6, 2, 16);
 
+rowHeader();
 seattle.render();
 tokyo.render();
+dubai.render();
+paris.render();
+lima.render();
