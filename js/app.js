@@ -24,18 +24,14 @@ function CityProfile(city, hours, avgSale, minCust, maxCust) {
   this.avgSale = avgSale;
   this.minCust = minCust;
   this.maxCust = maxCust;
-  // this.hourlySales = hourlySales;
 }
 
-
-//Constructor Function
 CityProfile.prototype.render = function () {
 
   const profileContainer = document.getElementById('store-container');
   const article = createChild('article', profileContainer);
 
-  createChild('h2', article, this.city);
-
+  // createChild('h2', article, this.city);
 
   const table = createChild('table', article);
   const headerRow = createChild('tr', table);
@@ -59,6 +55,14 @@ CityProfile.prototype.render = function () {
   createChild('td', dataRow, total);
 };
 
+//   //table footer
+//   createChild('td', totalRow, 'Totals');
+//   for (let i = 0; i < this.hours.length; i += 1) {
+//     createChild('td', totalRow,)
+//   }
+//   createChild('td', totalRow, total);
+// };
+
 //create createChild function
 function createChild(tag, parent, text) {
 
@@ -80,5 +84,7 @@ function getRandomInt(min, max) {
 }
 
 let seattle = new CityProfile('Seattle', openTimes, 6.3, 23, 65);
+let tokyo = new CityProfile('Tokyo', openTimes, 1.2, 3, 24);
 
 seattle.render();
+tokyo.render();
