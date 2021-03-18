@@ -13,12 +13,14 @@ ul {
 #store-container {
   border: solid;
   align-items: center;
+  margin: 0 auto;
 }
 
 th, tr, td{
   border: thin solid ;
   width: 3rem;
   text-align: center;
+  margin: 0 auto;
 }
 
 header {
@@ -46,5 +48,24 @@ header {
 
 a {
   text-decoration: none;
-  color: black;
+  color: rgb(170, 24, 24);
+}
+
+.newStore {
+  border: thin solid ;
+  width: 3rem;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.linkButton {
+  margin: 0 auto;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+h1 {
+  margin: 0 auto;
+  text-align: center;
 }
