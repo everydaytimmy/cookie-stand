@@ -1,0 +1,17 @@
+body {
+  background-color: rgb(226, 215, 201);
+}
+
+#store-selector {
+  border: thick;
+  align-items: center;
+}
+
+header {
+  background-color: rgb(211, 191, 191);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  top: 0;
+}
