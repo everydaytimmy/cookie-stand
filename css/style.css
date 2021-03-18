@@ -2,9 +2,15 @@ body {
   background-color: rgb(226, 215, 201);
 }
 
-#store-selector {
-  border: thick;
+#store-container {
+  border: solid;
   align-items: center;
+}
+
+th, tr, td{
+  border: thin solid ;
+  width: 3rem;
+  text-align: center;
 }
 
 header {

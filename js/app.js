@@ -36,6 +36,14 @@ function rowHeader() {
   createChild('th', headerRow, 'Daily Location Total');
 }
 
+function rowFooter() {
+  const footerRow = createChild('tr', profileContainer);
+  createChild('tf', headerRow, '');
+  for (let i = 0; i < openTimes.length + 1; i += 1) {
+    createChild('tf', headerRow, openTimes[i]);
+  }
+}
+
 CityProfile.prototype.render = function () {
 
   const profileContainer = document.getElementById('store-container');
@@ -56,14 +64,6 @@ CityProfile.prototype.render = function () {
   createChild('td', cityRow, total);
 };
 
-//   //table footer
-// createChild('tr', headerRow, 'Totals');
-//   for (let i = 0; i < this.hours.length; i += 1) {
-//     createChild('td', totalRow,)
-//   }
-//   createChild('td', totalRow, total);
-// };
-
 //total sales function
 function getHourlyTotals(cookieStands) {
   let totalHourlySales = [];
@@ -75,13 +75,10 @@ function getHourlyTotals(cookieStands) {
     for (let k = 0; k < cookieStands.length; k++) {
 
       const currentCookieStand = cookieStands[k];
-
       const hourlySales = currentCookieStand.hourlySales;
-
       const hourlyTotal = hourlySales[i];
 
       dailySales += hourlyTotal;
-
     }
 
     totalHourlySales.push(dailySales);
