@@ -2,6 +2,14 @@ body {
   background-color: rgb(226, 215, 201);
 }
 
+ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 2rem;
+  background-color: rgb(218, 170, 148);
+}
+
 #store-container {
   border: solid;
   align-items: center;
@@ -20,4 +28,18 @@ header {
   justify-content: space-between;
   align-items: center;
   top: 0;
+  font-size: 2rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+}
+
+.bigfella {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+.pictures {
+  display: flex;
+  justify-content: space-between;
 }
