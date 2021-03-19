@@ -45,7 +45,7 @@ function rowFooter() {
   const footerRow = createChild('tr', profileContainer);
   createChild('td', footerRow, '');
   for (let i = 0; i < openTimes.length + 1; i += 1) {
-    createChild('td', footerRow, salesTallyAcrossHours);
+    createChild('td', footerRow, totalHourlySales[i]);
   }
 }
 
@@ -90,11 +90,10 @@ function getRandomInt(min, max) {
 }
 
 let salesTallyAcrossHours = 0;
+let totalHourlySales = [];
 
 //TOTAL SALES
 function getHourlyTotals(cookieObjects) {
-
-  let totalHourlySales = [];
 
   const len = openTimes.length;
 
@@ -142,8 +141,8 @@ function renderStores() {
 
 rowHeader();
 renderStores();
-rowFooter();
 getHourlyTotals(cookieObjects);
+rowFooter();
 
 // new store
 const submitButton = document.getElementById('newProfile');
