@@ -96,21 +96,21 @@ function getHourlyTotals(cookieObjects) {
 
   let totalHourlySales = [];
 
-  const len = cookieObjects[0].hourlySales.length;
+  const len = openTimes.length;
 
   // i equals posiion in hourlySales array
   for (let i = 0; i < len; i++) { // loop through for each hourly slot
 
-    const dailySales = GlobalSalesGivenHour(cookieObjects, i);
-
+    const dailySales = globalSalesGivenHour(cookieObjects, i);
+    console.log('daily', dailySales);
     totalHourlySales.push(dailySales);
   }
+  console.log(totalHourlySales);
   return totalHourlySales;
 }
 
-function GlobalSalesGivenHour(cookieObjects, index) {
+function globalSalesGivenHour(cookieObjects, index) {
   // loop through cookieStand objects
-  let salesTallyAcrossHours = 0;
 
   for (let k = 0; k < cookieObjects.length; k++) {
 
@@ -118,7 +118,7 @@ function GlobalSalesGivenHour(cookieObjects, index) {
 
     const currentCookieStand = cookieObjects[k];
 
-    const salesForHour = currentCookieStand.hourlySales[index];
+    const salesForHour = currentCookieStand.sales[index];
 
     salesTallyAcrossHours += salesForHour;
 
@@ -143,25 +143,25 @@ function renderStores() {
 rowHeader();
 renderStores();
 rowFooter();
-
-console.log(cookieObjects);
+getHourlyTotals(cookieObjects);
 
 // new store
-const newForm = document.getElementById('newStore');
-const submitButton = document.getElementById('submit');
+const submitButton = document.getElementById('newProfile');
 
 submitButton.addEventListener('submit', addStoreHandler);
 
 
 function addStoreHandler(event) {
   event.preventDefault();
-console.log(event);
+
   const name = event.target.name.value;
   const minCust = event.target.minCust.value;
   const maxCust = event.target.maxCust.value;
   const avgCookie = event.target.avgCookie.value;
 
-  const newStore = new CityProfile(name, minCust, maxCust, avgCookie);
+  new CityProfile(name, minCust, maxCust, avgCookie);
+
+  let table = document.getElementById('store-container');
 
   table.innerHTML = '';
 
